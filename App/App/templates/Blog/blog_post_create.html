@@ -2,7 +2,7 @@
 {% block content %}
    <h2>Create new Blog</h2>
    <div class="col-md-6">
-      <form>
+      <form method="POST" action=".">{% csrf_token %}
          <div class="form-group">
            <label for="title">Title</label>
            <input type="text" class="form-control" id="title" name='title' required>
