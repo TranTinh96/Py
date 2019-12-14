@@ -1,9 +1,8 @@
-from django.db import models
+from django import forms
 
 # Create your models here.
 
-class contact_Home(models.Model):
-   full_name = models.CharField(max_length=255)
-   email = models.EmailField()
-   content = models.TextField()
-   
+class ContactForm(forms.Form):
+   full_name = forms.CharField()
+   email =forms.EmailField()
+   content = forms.CharField(widget=forms.Textarea)
