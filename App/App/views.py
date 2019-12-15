@@ -17,6 +17,7 @@ def Contact_Page(request):
    form = ContactHome(request.POST or None)
    if form.is_valid():
       print(form.cleaned_data)
+      form = ContactHome()
    context={
        "title" : "Contact us",
        "form": form
