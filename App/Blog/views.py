@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponse, Http404
 
 from .models import BlogPost
+from .forms import BlogPostModelForm
 
 
 # Create your views here.
@@ -35,7 +36,13 @@ def blog_post_list_view(request):
 
 def blog_post_create_view(request):
     template_name = 'Blog/blog_post_create.html'
-    content = {"form": None}
+    form = BlogPostModelForm(request.POST or None)
+    if form.is_valid():
+        # Save Database
+        form.save()
+        # End Save
+        form = BlogPostModelForm()
+    content = {"form": form}
     return render(request, template_name, content)
 
 
