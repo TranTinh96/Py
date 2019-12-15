@@ -14,10 +14,14 @@ def Home_Page(request):
    return render(request, template_name,)
 
 def Contact_Page(request):
-   title = "Contact us"
-   template_name = "Home/home_contact.html"
-   print(request.POST)
    form = ContactHome(request.POST or None)
    if form.is_valid():
       print(form.cleaned_data)
-   return render(request,template_name,{'title': title})
+   context={
+       "title" : "Contact us",
+       "form": form
+   }
+   template_name = "Home/home_contact.html"
+   print(request.POST)
+
+   return render(request,template_name,context)
