@@ -60,13 +60,20 @@ def blog_post_detail_view(request):
     return render(request, template_name, content)
 
 
-def blog_post_update_view(request):
+@staff_member_required
+def blog_post_update_view(request,slug):
     try:
-        obj = BlogPost.objects.get(id=id)
+        obj = BlogPost.objects.get(slug=slug)
     except:
         raise Http404
-    template_name = 'Blog/blog_post_update.html'
-    content = {"object": obj}
+    form = BlogPostModelForm(request.POST or None,instance=obj)
+    print("-------------------------------------------------")
+    print(form)
+    if form.is_valid():
+        form.save()
+        form = BlogPostModelForm()
+    template_name = 'Blog/blog_post_create.html'
+    content = {"form": form , "title":obj.title}
     return render(request, template_name, content)
 
 

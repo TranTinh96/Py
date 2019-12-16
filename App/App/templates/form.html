@@ -2,7 +2,7 @@
 {% block content %}
    <h2>{{title}}</h2>
    <div class="col-md-6">
-      <form method="POST" action=".">{% csrf_token %}
+      <form method="POST" action="">{% csrf_token %}
         {{form.as_p}}
         <!--
         <div class="form-group">

@@ -3,6 +3,7 @@
    {% for object in object_list %}
       <h3>{{object.title}}</h3>
       <p>{{object.content}}</p>
+      <a href="http://127.0.0.1:8000/blog/update/{{object.slug}}"">Edit</a  >
    {% endfor %}
 {% endblock content %}
 
